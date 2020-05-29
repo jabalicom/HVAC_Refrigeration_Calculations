@@ -37,12 +37,12 @@ Cp = 1.006 # Specific Heat of Air [kJ/kgK]
 hwe = 2454 # Latent heat evaporization water- in air at atmospheric pressure and 20oC- [kJ/kg]
 p_air = 1.202 # Air density [kg/m3]
 
-print('Inlet Temperature = {}K or {} Celsius'.format((round(ti,2)), round(ti-273.15,2)))
-print('Inlet %RH = {}%'.format(round(rhi*100,2)))
-print('Outlet Temperature = {}K or {} Celsius'.format((round(to,2)), round(to-273.15,2)))
-print('Outlet %RH = {}%'.format(round(rho*100,2)))
-print('Air Velocity = {} m/s'.format((round(air_velocity,2)))) 
-print('Duct Area = {} m2'.format(duct_area))
+print('Inlet Temperature = {:.2f}K or {:.2f} Celsius'.format(ti, ti-273.15))
+print('Inlet %RH = {:.2f}%'.format(rhi*100))
+print('Outlet Temperature = {:.2f}K or {:.2f} Celsius'.format(to, to-273.15))
+print('Outlet %RH = {:.2f}%'.format(rho*100))
+print('Air Velocity = {:.2f} m/s'.format(air_velocity)) 
+print('Duct Area = {:.2f} m2'.format(duct_area))
 print('\n')
 
 # Heating or Cooling Calculation
@@ -66,18 +66,18 @@ def heating_and_cooling(ti, rhi, to, rho, air_velocity, duct_area):
     Ql = hwe * ma *(Wo - Wi) # Latent Heat Added/Removed from the Air [kW]
     Qt = ma * (ho - hi) # Total Heat Added/Removed from the Air [kW]
     
-    print('Partial Pressure of Water Vapour = {} bar'.format(round(pv,3)))
-    print('Mass of dry air = {} kg/s'.format(round(ma,2)))
+    print('Partial Pressure of Water Vapour = {:.3f} bar'.format(pv))
+    print('Mass of dry air = {:.2f} kg/s'.format(ma))
 
-    print('Inlet Air Humidity Ratio = {} kg/kg of dry air' .format(round(Wi,5)))
-    print('Outlet Air Humidity Ratio = {} kg/kg of dry air' .format(round(Wo,5)))
+    print('Inlet Air Humidity Ratio = {:.5f} kg/kg of dry air' .format(Wi))
+    print('Outlet Air Humidity Ratio = {:.5f} kg/kg of dry air' .format(Wo))
 
-    print('Inlet Air Enthalpy = {} kJ/kg of dry air' .format(round(hi,3)))
-    print('Outlet Air Enthalpy = {} kJ/kg of dry air' .format(round(ho,3)))
+    print('Inlet Air Enthalpy = {:.3f} kJ/kg of dry air' .format(hi))
+    print('Outlet Air Enthalpy = {:.3f} kJ/kg of dry air' .format(ho))
 
-    print('Sensible Heat added/removed = {} kJ/s or kW'.format(round(Qs,3)))
-    print('Latent Heat added/removed = {} kJ/s or kW'.format(round(Ql,3)))
-    print('Amount of Heat added/removed = {} kJ/s or kW'.format(round(Qt,2)))
+    print('Sensible Heat added/removed = {:.3f} kJ/s or kW'.format(Qs))
+    print('Latent Heat added/removed = {:.3f} kJ/s or kW'.format(Ql))
+    print('Amount of Heat added/removed = {:.2f} kJ/s or kW'.format(Qt))
     print('\n')
     
 # Psychrometric Process Plot
@@ -143,7 +143,7 @@ def get_frost_point_c(ti, dew_point_c):
     frost_point_k = dew_point_k - ti + 2671.02 / ((2954.61 / ti) + 2.193665 * math.log(ti) - 13.3448)
     global frost_point_C
     frost_point_C = frost_point_k - 273.15
-    print('Inlet Air Frost Point = {}C'.format(round(frost_point_C,2)))
+    print('Inlet Air Frost Point = {:.2f}C'.format(frost_point_C))
 
 # Adiabatic Cooling of Air:
 def adiabatic_cooling(ti, rhi, to, rho):
@@ -164,15 +164,15 @@ def adiabatic_cooling(ti, rhi, to, rho):
     Qadiabatic = abs(p_air * (ho-hi) * V/3600)
 
     print('\n')
-    print('Air Volumetric Rate = {} m3/h'.format(round(V,2)))
-    print('Inlet Air Enthalpy = {} kJ/kg of dry air' .format(round(hi,3)))
-    print('Outlet Air Enthalpy = {} kJ/kg of dry air' .format(round(ho,3)))
-    print('Partial Pressure of Water Vapour = {} bar'.format(round(pv,3)))
-    print('Specific Humidity Inlet Air = {} kg/kg of dry air'.format(round(W1,5)))
-    print('Specific Humidity Outlet Air = {} kg/kg of dry air'.format(round(W2,5)))
-    print('Spray Water = {} kg of moisture/m3 of air'.format(round(spray_water,5)))
-    print('Amount of Water Required per hour = {} kg/h'.format(round(amount_of_water_required_per_hour,3)))
-    print('Adiabatic Cooler Power Output = {} kW'.format(round(Qadiabatic,2)))
+    print('Air Volumetric Rate = {:.2f} m3/h'.format(V))
+    print('Inlet Air Enthalpy = {:.3f} kJ/kg of dry air' .format(hi))
+    print('Outlet Air Enthalpy = {:.3f} kJ/kg of dry air' .format(ho))
+    print('Partial Pressure of Water Vapour = {:.3f} bar'.format(pv))
+    print('Specific Humidity Inlet Air = {:.5f} kg/kg of dry air'.format(W1))
+    print('Specific Humidity Outlet Air = {:.5f} kg/kg of dry air'.format(W2))
+    print('Spray Water = {:.5f} kg of moisture/m3 of air'.format(spray_water))
+    print('Amount of Water Required per hour = {:.3f} kg/h'.format(amount_of_water_required_per_hour))
+    print('Adiabatic Cooler Power Output = {:.2f} kW'.format(Qadiabatic))
     print('\n')
  
 
@@ -262,8 +262,8 @@ def comfPMV(ta, tr, vel, rh, met, clo, wme):
     r.append(pmv)
     r.append(ppd)
 
-    print('Thermal Comfort Predicted Mean Vote = {}'.format(round(pmv,2)))
-    print('Thermal Comfort Percentage of People Disatisfied = {}%'.format(round(ppd,2)))
+    print('Thermal Comfort Predicted Mean Vote = {:.2f}'.format(pmv))
+    print('Thermal Comfort Percentage of People Disatisfied = {:.2f}%'.format(ppd))
 
     
 if __name__ == "__main__": 
